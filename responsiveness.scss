@@ -1,0 +1,65 @@
+// Created by Cristian Sarghe - https://github.com/CristianSarghe/responsiveness
+// Breakpoints
+// Example: breakpoint-sm is the limit between xs and sm
+// Therefore, xs is below breakpoint-sm and sm is between breakpoint-sm and breakpoint-md
+
+$breakpoint-base: 0px;
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// =============================================
+
+@mixin media-above($breakpoint) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+
+@mixin media-below($breakpoint) {
+	@media screen and (max-width: $breakpoint) {
+		@content;
+	}
+}
+
+// =============================================
+
+@mixin media-between($left-breakpoint, $right-breakpoint) {
+	@media screen and (min-width: $left-breakpoint) and (max-width: $right-breakpoint) {
+		@content;
+	}
+}
+
+// =============================================
+
+@mixin media-xs {
+	@include media-below($breakpoint-sm) {
+		@content;
+	}
+}
+
+@mixin media-sm {
+	@include media-between($breakpoint-sm, $breakpoint-md) {
+		@content;
+	}
+}
+
+@mixin media-md {
+	@include media-between($breakpoint-md, $breakpoint-lg) {
+		@content;
+	}
+}
+
+@mixin media-lg {
+	@include media-between($breakpoint-lg, $breakpoint-xl) {
+		@content;
+	}
+}
+
+@mixin media-xl {
+	@include media-above($breakpoint-xl) {
+		@content;
+	}
+}
